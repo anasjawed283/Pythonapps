@@ -1,4 +1,4 @@
-#Anas Jawed Corizo Azure Major Project
+#This code is contributed by Anas Jawed
 from faker import Faker
 
 # Initialize Faker instance
