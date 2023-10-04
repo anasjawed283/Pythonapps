@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot with GPT-3</title>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-output"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button id="send-button">Send</button>
+  </div>
+
+  <script>
+    const apiKey = 'YOUR_API_KEY'; // Replace with your API key
+    const chatOutput = document.getElementById('chat-output');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    function appendMessage(who, message) {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = who + ': ' + message;
+      chatOutput.appendChild(messageElement);
+    }
+
+    function sendUserMessage() {
+      const userMessage = userInput.value;
+      appendMessage('You', userMessage);
+      userInput.value = '';
+
+      // Send the user's message to the chatbot using the GPT-3 API
+      fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          prompt: userMessage,
+          max_tokens: 50, // Can be changed based upon the type of task it is used
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        const botResponse = data.choices[0].text;
+        appendMessage('Bot', botResponse);
+      })
+      .catch(error => console.error('Error:', error));
+    }
+
+    sendButton.addEventListener('click', sendUserMessage);
+  </script>
+</body>
+</html>
