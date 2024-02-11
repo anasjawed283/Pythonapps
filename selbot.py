@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # Replace 'your_url' with the actual URL of your website
-url = 'https://camo.githubusercontent.com/caa27d958929db85f1bd23449cba254b093aa4fed3516f9def99ba8116b0057c/68747470733a2f2f70726f66696c652d636f756e7465722e676c697463682e6d652f253742616e61736a617765643238332537442f636f756e742e737667'
+url = ''
 
 # Set up the Chrome WebDriver (make sure chromedriver.exe is in your system path or specify its path)
 driver = webdriver.Chrome(executable_path='"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk"')  # Update with the correct path
